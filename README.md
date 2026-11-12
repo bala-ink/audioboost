@@ -8,10 +8,10 @@ AudioBoost captures system audio with Core Audio process taps (macOS 14.2+), rou
 
 ## Features
 
-- **+0 to +24 dB boost** with a menu-bar slider (defaults to +12 dB)
+- **+0 to +24 dB boost** with a slider in the main window or menu bar (defaults to +12 dB)
 - **Compressor** to lift quiet dialogue and a **limiter** to keep peaks from clipping
 - **Works with any app**, because it taps the system audio output rather than a single player
-- **Menu-bar only** — no Dock icon, no background window
+- **Menu-bar control plus a main window** — keeps working when the window is closed
 - **Survives output-device changes** by suspending the session safely instead of leaking audio resources
 - Pure SwiftUI + Core Audio, no private APIs, no third-party dependencies
 
@@ -34,7 +34,7 @@ open dist/AudioBoost.app
 
 ### First launch
 
-1. Look for the speaker icon in the menu bar and click it.
+1. Open AudioBoost. The main window appears, and a speaker icon is also added to the menu bar.
 2. Press **Start**. macOS prompts for **System Audio Recording** permission.
 3. Allow AudioBoost in **System Settings → Privacy & Security → Screen & System Audio Recording**.
 4. Quit and reopen AudioBoost, then press **Start** again. macOS often requires a relaunch after granting this permission.
