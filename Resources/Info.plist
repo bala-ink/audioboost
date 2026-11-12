@@ -8,6 +8,8 @@
 	<string>AudioBoost</string>
 	<key>CFBundleExecutable</key>
 	<string>AudioBoost</string>
+	<key>CFBundleIconFile</key>
+	<string>AudioBoost</string>
 	<key>CFBundleIdentifier</key>
 	<string>io.github.bala-ink.audioboost</string>
 	<key>CFBundleInfoDictionaryVersion</key>
