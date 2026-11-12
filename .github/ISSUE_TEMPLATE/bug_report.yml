@@ -1,0 +1,77 @@
+name: Bug report
+description: Report something that is broken or behaves unexpectedly.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please do not include audio
+        recordings or other private content.
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "e.g. macOS 15.1 (24B83)"
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: Mac model
+      placeholder: "e.g. MacBook Pro 14-inch, M3 Pro"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you run AudioBoost?
+      options:
+        - Built from source with Command Line Tools
+        - Built from source with Xcode
+        - Downloaded a CI artifact
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: output
+    attributes:
+      label: Output device
+      placeholder: "e.g. MacBook Pro Speakers, AirPods Pro, USB interface"
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Permission
+      options:
+        - label: AudioBoost has System Audio Recording permission
+        - label: I relaunched the app after granting permission
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open AudioBoost
+        2. Press Start
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste Console output for the AudioBoost process if available.
+      render: shell

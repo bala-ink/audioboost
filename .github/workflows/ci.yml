@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: macos-15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          swift --version
+          xcodebuild -version
+
+      - name: Build
+        run: swift build
+
+      - name: Test
+        run: swift test --enable-code-coverage
+
+      - name: Lint
+        run: |
+          if xcrun --find swift-format >/dev/null 2>&1; then
+            xcrun swift-format lint --recursive Sources Tests Package.swift
+          else
+            swift format lint --recursive Sources Tests Package.swift
+          fi
+
+      - name: Assemble app
+        run: CONFIGURATION=release ./scripts/build-app.sh
+
+      - name: Package app
+        run: ditto -c -k --sequesterRsrc --keepParent dist/AudioBoost.app AudioBoost.zip
+
+      - name: Upload app
+        uses: actions/upload-artifact@v4
+        with:
+          name: AudioBoost
+          path: AudioBoost.zip
+          if-no-files-found: error
